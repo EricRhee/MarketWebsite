@@ -1,0 +1,532 @@
+*{
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scrollbar-gutter: stable;
+    
+    
+}
+body {
+
+    font-family: "Poppins", sans-serif;
+    scrollbar-width: none;
+    
+}
+.navbar{
+
+    display: flex;
+    align-items: center;
+    height: 70px;
+
+}
+
+.navbar input[type=search]{
+
+    display: flex;
+    align-items: center;
+    margin-left: 300px;
+    width: 500px;
+
+}
+nav{
+
+    flex: 1;
+    text-align: right;
+    padding-bottom: 10px;
+
+}
+nav ul{
+
+    display: inline-block;
+    list-style-type: none;
+    
+}
+nav ul li{
+
+    display: inline-block;
+    margin-right: 20px;
+
+}
+.container{
+
+    margin: auto;
+    padding-left: 0px;
+    padding-right: 0px;
+    box-shadow: 0 3px 3px -3px rgba(166, 165, 165, 0.5);
+    background: white;
+    z-index: 2;
+
+}
+
+a{
+
+    text-decoration: none;
+    color: #555;
+
+}
+p{
+
+    color: #555;
+
+}
+.row{
+
+    position: absolute;
+    top: 150px;
+    left: 250px;
+    -webkit-text-stroke-width: .5px;
+    -webkit-text-stroke-color: #edf1f3;
+    color: #edf1f3;
+    font-weight: bold;
+    font-size: 25px;
+
+}
+
+#img-bigger {
+
+    font-size: 70px;
+    color: #edf1f3;
+    -webkit-text-stroke-width: .5px;
+    -webkit-text-stroke-color: #edf1f3;
+
+}
+#product-photo1{
+
+    border-radius: 25px;
+    position: relative;
+
+}
+.trending{
+
+    background: #edf1f3;
+    margin-left: 25px;
+    border-radius: 25px;  
+
+}
+.top{
+
+    padding-left: 65px;
+
+}
+.home-pic {
+
+    display: block;
+    font-size: 0;
+
+}
+
+ul li {
+
+    display: inline-block;
+    margin-right: 20px;
+    width:auto;
+
+}
+
+h2{
+
+    padding-top: 25px;
+    padding-bottom: 15px;
+
+}
+.border {
+
+    margin: 25px;
+    padding-left: 15px;
+    width: auto;
+    margin-bottom: 0px;
+    
+}
+.deals{
+
+    background: #edf1f3;
+    margin-left: 25px;
+    border-radius: 25px;  
+
+}
+.border-2 {
+
+    margin: 25px;
+    padding-left: 15px;
+    width: auto;
+    margin-bottom: 0px;
+
+}
+
+ul#top-ul {
+
+    display: inline-block;
+
+}
+ul#top-ul li {
+
+    display: inline-block;
+    width: auto;
+
+}
+h2 {
+
+    font-weight: bold;
+    text-align: center;
+
+}
+
+h3 {
+
+    font-weight: bold;
+    font-size: 15px;
+    color: white;
+
+}
+
+.percent {
+
+    background: rgb(245, 70, 140);
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding-left: 15px;
+    padding-right: 10px;
+    border-bottom-left-radius: 25px;
+
+}
+
+.percent-2 {
+
+    background: rgb(245, 70, 140);
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding-left: 15px;
+    padding-right: 10px;
+    border-bottom-left-radius: 25px;
+
+}
+
+.summer {
+
+    background: #edf1f3;
+    margin-left: 90px;
+    border-radius: 25px;  
+    margin-right: 90px;
+    position: relative;
+
+}
+
+.border-3 {
+
+    margin: 25px;
+    padding-left: 15px;
+    width: auto;
+
+}
+
+#summer-h {
+
+    padding-bottom: 0px;
+    color: rgb(245, 70, 140);
+    text-align: left;
+
+}
+
+#summer-p {
+
+    padding-bottom: 15px;
+
+}
+
+.right { 
+
+    width: 30px; 
+    height: 30px; 
+    transition: .5s; 
+    float: left; 
+    box-shadow: -2px 2px 0 black; 
+    transform: rotate(-135deg); 
+    top: 50%;
+    position: absolute;
+    border: transparent;
+    
+}
+
+.overflow {
+
+    padding-left: 100px;
+    padding-right: -200px;
+    overflow: hidden;
+    position: relative;
+
+}
+
+#relative {
+
+    position: relative;
+
+}
+.img-container {
+
+    position: relative;
+
+}
+.top-message {
+
+    height: 40px;
+    background: rgb(199, 221, 236);
+    text-align: center;
+    padding-top: 7px;
+
+}
+
+h4 {
+
+    font-weight: lighter;
+
+}
+
+.name {
+
+    position: absolute;
+    right: 46%;
+    color: black;
+
+}
+
+h5 {
+
+    font-size: 35px;
+    text-align: center;
+    font-weight: lighter;
+    text-shadow: .5px .5px black;
+    font-family: "Playwrite IS", cursive;
+    font-style: normal;
+
+}
+
+
+.search {
+
+    padding-left: 20px;
+
+}
+
+.three-picks {
+
+    position:relative;
+    z-index: 1;
+    text-align: center;
+
+}
+#picks {
+    
+    text-align: center;
+    font-weight: lighter;
+    font-size: 15px;
+    margin-bottom: 10px;
+      
+}
+#back {
+
+    background: rgb(199, 221, 236);
+    width: 400px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 0;
+    
+}
+
+#image-row {
+    margin-left: 0px;
+    margin-right: 0px;
+    text-align: center;
+    width: 1600px;
+    position:relative;
+    left: 50%;
+    margin-left: -800px;
+    
+
+    align-items: center;
+
+}
+#more-love {
+    width: 1600px;
+    position:relative;
+    left: 50%;
+    margin-left: -825px;
+
+    color: black;
+    font-size: 30px;
+    text-align: left;
+    padding-bottom: 10px;
+    padding-left: 65px;
+
+}
+
+.load-more {
+    background: white;
+    text-align: center;
+    margin-left: 750px;
+    margin-right: 750px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 15px;
+    border: 1px solid black;
+    
+}
+
+h6 {
+    font-size: 25px;
+    width: 100px;
+    color: black;
+    font-weight: bold;
+    display:inline-block;
+    position:absolute;
+    left:50%;
+    justify-content: center;
+    margin-left: -50px;
+    text-align: center;
+    margin-top: 50px;
+    
+
+}
+.registration-popup h6 {
+    font-size: 25px;
+    width: 160px;
+    color: black;
+    font-weight: bold;
+    display:inline-block;
+    position:absolute;
+    left:50%;
+    justify-content: center;
+    margin-left: -80px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+.popup {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    margin-top: -300px;
+    left: 50%;
+    margin-left: -250px;
+    width: 500px;
+    height: 600px;
+    background: white;
+    visibility: hidden;
+    border: .5px solid black;
+    border-radius: 15px;
+    box-shadow: 0 2px 2px -2px gray;   
+}
+
+.registration-popup {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    margin-top: -300px;
+    left: 50%;
+    margin-left: -250px;
+    width: 500px;
+    height: 600px;
+    background: white;
+    visibility: hidden;
+    border: .5px solid black;
+    border-radius: 15px;
+    box-shadow: 0 2px 2px -2px gray;
+}
+
+.close-reg {
+    visibility: visible;
+}
+
+#close {
+    font-size: 30px;
+    vertical-align: middle;
+    position: relative;
+    margin-top: 30px;
+}
+
+.open-popup {
+    visibility: visible;
+
+}
+.logx {
+    text-align: right;
+
+}
+.stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+}
+.dim {
+    opacity: .5;
+}
+
+.top-container form {
+    position: absolute;
+    top: 130px;
+    left: 50%;
+    margin-left: -210px;
+}
+form input {
+    width: 400px;
+    height: 40px;
+    margin: 10px;
+    border: 1.5px solid #ccc;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+.registration-popup form {
+    position: absolute;
+    top: 130px;
+    left: 50%;
+    margin-left: -210px;
+}
+
+.continue {
+    width: 400px;
+    height: 50px;
+    position:absolute;
+    top: 140px;
+    left: 50%;
+    border: none;
+    background: rgb(245, 70, 140);
+    margin-left: -220px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 15px;
+}
+.sign-up {
+    width: 400px;
+    height: 50px;
+    position:absolute;
+    top: 190px;
+    left: 50%;
+    border: none;
+    background: rgb(245, 70, 140);
+    margin-left: -220px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 15px;
+}
+#bottom-text {
+    position: absolute;
+    width: 300px;
+    text-align: center;
+    top: 400px;
+    display: flex;
+    text-align: center;
+    left: 50%;
+    margin-left: -170px;
+    font-weight: lighter;
+    font-size: 15px;
+    justify-content: center;
+}
+
+
