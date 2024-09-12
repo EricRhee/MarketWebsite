@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Front-Page</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playwrite+IS:wght@100..400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <!-- Display success message -->
+    <% if (message.length > 0) { %>
+        <div class="alert alert-success">
+            <%= success %>
+        </div>
+        <script>
+            console.log('Success alert displayed');
+        </script>
+    <% } %>
+
+    <!-- Display error message -->
+    <% if (error) { %>
+        <div class="alert alert-danger">
+            <%= error %>
+        </div>
+    <% } %>
+    <div class="main" id="main">
+        <div class="top-message">
+            <h4> Opens 12/15/24</h4>
+        </div>
+        <div class="container">
+            <div class="navbar"> 
+                <div class="search">
+                    <ul>
+                        <li>
+                            <span class="material-symbols-outlined">
+                                menu
+                            </span>
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined">
+                                search
+                            </span>   
+                        </li>
+                    </ul>
+                </div>           
+                <div class="name">
+                    <h5> Hooney</h5>
+                </div>
+                <nav>        
+                    <ul>
+                        <li>
+                            <button type="submit" id="sign-up/registration" style="border:none;background:white;" onclick="openPopup()">
+                                <span class="material-symbols-outlined">
+                                    person
+                                </span>
+                            </button>
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined">
+                                favorite
+                            </span>
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined md-48">
+                                shopping_cart
+                            </span>
+                        </li>   
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="three-picks">
+            <nav id="picks">
+                <ul>
+                    <li id ="back"> Free Standard Shipping with any US$49 purchase</li>
+                    <li id ="back"> Download app for more deals </li>
+                    <li id ="back"> Gifts and Premium</li>
+                </ul>
+            </nav>
+        </div>
+        <div class="containter-homepic">
+            <div class="home-pic">
+                <div class="overflow">      
+                    <img src = "images/tempHomePic.jpeg" width = "1500px" height = "700px"> 
+                    <div class="row">  
+                        <h1>Summer Sale</h1>   
+                        <p id = "img-bigger"> UP to 50% off</p>
+                    </div>       
+                </div>
+            </div>
+        </div>
+        <div class="top"> 
+            <ul id="top-ul"> 
+                <li>
+                    <div class="trending"> 
+                        <div class="border">
+                            <h2> Trending!</h2>
+                            <ul> 
+                                <li> 
+                                    <img src = "images/product-photo.webp" id="product-photo1" width = "200px" height = "200px">  
+                                    <p>Product name</p>
+                                    <p>5.99</p>
+                                </li>
+                                <li> 
+                                    <img src = "images/product-photo.webp" id="product-photo1" width = "200px" height = "200px">   
+                                    <p>Product name</p>
+                                    <p>5.99</p>
+                                </li>
+                                <li> 
+                                    <img src = "images/product-photo.webp" id="product-photo1" width = "200px" height = "200px">  
+                                    <p>Product name</p>
+                                    <p>5.99</p>
+                                </li>
+                                <li> 
+                                    <img src = "images/product-photo.webp" id="product-photo1" width = "200px" height = "200px">  
+                                    <p>Product name</p>
+                                    <p>5.99</p>
+                                </li>
+                            </ul>
+                            <br>
+                        </div>    
+                    </div>
+                </li>
+                <li>
+                    <div class="deals">
+                        <div class="border-2">
+                            <h2> Deals!</h2>
+                            <ul> 
+                                <li> 
+                                    <div class="img-container">
+                                        <img src = "images/product-photo.webp" id="product-photo1" width = "200px" height = "200px">
+                                        <div class="percent">
+                                            <h3> 50% OFF</h3>
+                                        </div>
+                                    </div>
+                                    <p>Product name</p>
+                                    <p>5.99</p>
+                                </li>
+                                <li> 
+                                    <div class="img-container">
+                                        <img src = "images/product-photo.webp" id="product-photo1" width = "200px" height = "200px">
+                                        <div class="percent-2">
+                                            <h3> 30% OFF</h3>
+                                        </div>
+                                    </div>
+                                    <p>Product name</p>
+                                    <p>5.99</p>
+                                </li>
+                            </ul>
+                            <br>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div> 
+        <div class="summer"> 
+            <div class="border-3">
+                <h2 id="summer-h"> Summer is Here! </h2>
+                <p id="summer-p"> lets try out a new style</p>
+                <ul> 
+                    <li> 
+                        <img src = "images/product-photo.webp" id="product-photo1" width = "200px" height = "200px">  
+                        <p>Product name</p>
+                        <p>5.99</p>
+                    </li>
+                    <li> 
+                        <img src = "images/product-photo.webp" id="product-photo1" width = "200px" height = "200px">   
+                        <p>Product name</p>
+                        <p>5.99</p>
+                    </li>
+                    <li> 
+                        <img src = "images/product-photo.webp" id="product-photo1" width = "200px" height = "200px">  
+                        <p>Product name</p>
+                        <p>5.99</p>
+                    </li>
+                    <li> 
+                        <img src = "images/product-photo.webp" id="product-photo1" width = "200px" height = "200px">  
+                        <p>Product name</p>
+                        <p>5.99</p>
+                    </li>
+                    <li> 
+                        <img src = "images/product-photo.webp" id="product-photo1" width = "200px" height = "200px">  
+                        <p>Product name</p>
+                        <p>5.99</p>
+                    </li>
+                    <li> 
+                        <img src = "images/product-photo.webp" id="product-photo1" width = "200px" height = "200px">  
+                        <p>Product name</p>
+                        <p>5.99</p>
+                    </li>
+                    <li>
+                        <button class="right"></button> 
+                    </li>
+    
+                </ul>
+                <br>
+            </div> 
+        </div>
+        <h2 id="more-love"> More to Love </h2>
+        <div id="image-row"> 
+                
+        </div>
+        <script>
+            const images = [
+                'images/product-photo.webp',
+                'images/product-photo2.webp',
+                'images/product-photo3.webp',
+                'images/product-photo4.webp',
+                'images/product-photo5.webp',
+                'images/product-photo6.webp',
+                'images/product-photo7.webp'
+            ]
+            const container = document.getElementById('image-row');
+    
+    
+            var br = document.createElement("BR");
+    
+            for (let i = 0; i < 4; i++) {
+                for (let z = 0; z < 7; z++) {
+                    const imageContainer = document.createElement('div');
+                    imageContainer.style.display = 'inline-block';
+                    imageContainer.style.margin = '10px';
+                    imageContainer.style.textAlign = 'left';
+    
+                    const img = document.createElement('img');
+                    img.src = images[z];
+                    img.style.width = '200px';
+                    img.style.height = '200px';
+                    img.style.border = '1px solid #edf1f3';
+                    img.style.borderRadius = '25px';
+                    img.style.boxShadow = "0 2px 2px -2px black";
+    
+                    const text = document.createElement('p');
+                    text.textContent = "Product Name";
+                    text.style.marginTop = '5px';
+    
+                    const price = document.createElement('p');
+                    price.textContent = "5.99";
+                    price.style.marginTop = '0px';
+    
+                    imageContainer.appendChild(img);
+                    imageContainer.appendChild(text);
+                    imageContainer.appendChild(price);
+                    container.appendChild(imageContainer);
+                    
+    
+                }
+            }
+        </script>
+        <div class="load-more"> 
+            Load More
+        </div>
+    </div>
+    
+     
+
+    <div class="registration-popup" id="registration-popup">
+        <h6> Registration </h6>
+        <div class="logx">
+            <ul>
+                <li>
+                
+                </li>
+                <li>
+                    <button type="submit" id="close-registration" style="border:none;background:white;" onclick="closeReg()"> 
+                        <span class="material-symbols-outlined" id="close">
+                            close
+                        </span>
+                    </button>   
+                </li>
+            </ul>
+        </div>
+        <form action="/createUser" method="POST" id="signup-form">
+            <input type="text" name="name" placeholder="Name" required> 
+            <input type="email" name="email" placeholder="Email" required> 
+            <input type="password" name="password" id="password" placeholder="Password" pattern="^(?=.*[A-Z])(?=.*[\W])[A-Za-z\d\W]{6,20}$" required>
+            <button type="submit" class="sign-up" >Sign Up</button>
+            <button type="button" class="dont-have-account" onclick="openPopup2()"> 
+                <p id="bottom-text"> 
+                    Already have an account?&nbsp;
+                    <span> </span>
+                    <span style="color:blue;"> Sign In</span>
+                </p> 
+            </button>
+        </form>
+    </div>
+    
+    <div class="popup" id="popup">
+        <div class="top-container">
+            <h6> Log in </h6>
+            <div class="logx">
+                <ul>
+                    <li>
+                    
+                    </li>
+                    <li>
+                        <button type="submit" id="close-registration" style="border:none;background:white;" onclick="closePopup()"> 
+                            <span class="material-symbols-outlined" id="close">
+                                close
+                            </span>
+                        </button>   
+                    </li>
+                </ul>
+            </div>
+            <form action="/login" method="POST" id="loginForm"> 
+                <input type="text" placeholder="Email" name="email"> 
+                <input type="password" placeholder="Password" name="password">
+                <button type="submit" class="continue">Continue</button>
+                <button type="button" class="dont-have-account" onclick="openReg()"> 
+                    <p id="bottom-text"> 
+                        Don't have an account?&nbsp;
+                        <span> </span>
+                        <span style="color:blue;"> Sign Up</span>
+                    </p> 
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        const popup = document.getElementById("popup");
+        const main = document.getElementById("main");
+        const registration = document.getElementById("registration-popup");
+        const form = document.getElementById("signup-form");
+        const password = document.getElementById("password");
+
+
+        function openPopup() {
+            main.classList.add("dim"); 
+            popup.classList.add("open-popup");
+            
+
+            document.body.classList.add("stop-scrolling")
+
+        }
+
+        function openPopup2() {
+            registration.classList.remove("close-reg");
+            popup.classList.add("open-popup");
+        }
+
+        function closePopup() {
+            popup.classList.remove("open-popup");
+            main.classList.remove("dim");
+            document.body.classList.remove("stop-scrolling"); 
+
+        }
+
+        function openReg() {
+            popup.classList.remove("open-popup");
+            registration.classList.add("close-reg");
+        }   
+
+        function closeReg() {
+            registration.classList.remove("close-reg");
+            main.classList.remove("dim");
+            document.body.classList.remove("stop-scrolling"); 
+        }
+    </script>
+    <script src="./script.js"></script>
+</body>
+</html> 
