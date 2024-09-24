@@ -8,22 +8,49 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
-    <!-- Display success message -->
-    <% if (message.length > 0) { %>
-        <div class="alert alert-success">
-            <%= success %>
+    <% if (success && success.length > 0) { %>
+        <div class="message" id="message">
+            <div class="success" id="success">
+                <span class="success-text"><%= success %></span>
+                <button type="button" id="success-close" onclick="closeSuccess()"> 
+                    <span class="material-symbols-outlined" id="close">
+                        close
+                    </span>
+                </button>
+            </div>
         </div>
+        
         <script>
             console.log('Success alert displayed');
+    
+            function closeSuccess() {
+                document.getElementById('message').style.display = 'none';
+            }
+        </script>
+    <% } %>
+    
+    <% if (error && error.length > 0) { %>
+        <div class="message-2" id="message-2">
+            <div class="error" id="success">
+                <span class="success-text"><%= error %></span>
+                <button type="button" id="error-close" onclick="closeSuccess()"> 
+                    <span class="material-symbols-outlined" id="close-2">
+                        close
+                    </span>
+                </button>
+            </div>
+        </div>
+        
+        <script>
+            console.log('Success alert displayed');
+    
+            function closeSuccess() {
+                document.getElementById('message-2').style.display = 'none';
+            }
         </script>
     <% } %>
 
-    <!-- Display error message -->
-    <% if (error) { %>
-        <div class="alert alert-danger">
-            <%= error %>
-        </div>
-    <% } %>
+
     <div class="main" id="main">
         <div class="top-message">
             <h4> Opens 12/15/24</h4>
@@ -50,11 +77,17 @@
                 <nav>        
                     <ul>
                         <li>
-                            <button type="submit" id="sign-up/registration" style="border:none;background:white;" onclick="openPopup()">
-                                <span class="material-symbols-outlined">
-                                    person
-                                </span>
-                            </button>
+                            <div class="dropdown">
+                                <button type="submit" id="sign-up/registration" style="border:none;background:white;" onclick="noUserDropMenu()">
+                                    <span class="material-symbols-outlined">
+                                        person
+                                    </span>
+                                </button>
+                                <div class="content" id="content">
+                                    <button type="submit" id="dropbar-signup" onclick="openPopup()">Sign in</button>
+                                    <button type="submit" id="dropbar-register" onclick="openReg()">Register</button>
+                                </div>
+                            </div>
                         </li>
                         <li>
                             <span class="material-symbols-outlined">
@@ -71,7 +104,24 @@
             </div>
         </div>
         
-        
+        <script>
+            function noUserDropMenu() {
+                const content = document.getElementById('content');
+                if (content.style.display === 'grid') {
+                    content.style.display = 'none'; // Hide if it's already visible
+                } else {
+                    content.style.display = 'grid'; // Show dropdown
+                }
+            }
+
+            window.onclick = function(event) {
+                const dropdown = document.querySelector('.dropdown');
+                const content = document.getElementById('content');
+                if (!dropdown.contains(event.target)) {
+                    content.style.display = 'none'; // Hide if clicked outside
+                }
+            }
+        </script>
         
         
         <div class="three-picks">
@@ -352,7 +402,9 @@
         }
 
         function openReg() {
+            main.classList.add("dim"); 
             popup.classList.remove("open-popup");
+            document.body.classList.add("stop-scrolling")
             registration.classList.add("close-reg");
         }   
 

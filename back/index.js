@@ -16,20 +16,20 @@ app.set('views', path.join(__dirname, '../views'));
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
-
-
 app.use(express.static(path.join(__dirname, '../public')));
-
-app.use(session({
-    secret: 'your-secret-key',
-    resave: false,
-    saveUninitialized: true
-}));
-app.use(flash());
 
 app.use(express.urlencoded({extended:true}))
 app.use(cors())
 app.use(express.json());
+
+app.use(cookieParser('SecretStringForCookies'));
+app.use(session({
+    secret: 'SecretStringForSession',
+    cookie: {maxAge: 60000},
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(flash());
 
 mongoose.connect("mongodb+srv://ericrhee83224:Thorkell83224@market.m7cof.mongodb.net/mern?retryWrites=true&w=majority&appName=Market")
 const db = mongoose.connection
@@ -41,13 +41,14 @@ db.once('open', ()=> {
 app.use((req, res, next) => {
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
-    console.log("got throught")
     next();
 });
 
 app.get("/", function(req, res) {
     //res.sendFile(path.join(__dirname, '../public/index.html'));
-    res.render('index', { message : req.flash('message')})
+    const successMessage = req.flash('success')
+    const errorMessage = req.flash('error')
+    res.render('index', { successMessage, errorMessage },)
 });
 
 
@@ -73,15 +74,16 @@ app.post("/login", async function(req, res) {
         if (user) {
             const result = req.body.password == user.password;
             if (result) {
-                req.flash('message', 'Login Successful')
-                console.log('Flash message set: Login Successful');
+                req.flash('success', 'Login Successful')
                 res.redirect("/")
                 
             } else  {
-                res.status(400).json({ error: "password doesn't match" });
+                req.flash('error', 'email or password does not match')
+                res.redirect("/")
             }
         } else {
-            res.status(400).json({ error: "email doesn't match" });
+            req.flash('error', 'email or password does not match')
+            res.redirect("/")
         }
     } catch(error) {
         res.status(400).json({ error });
