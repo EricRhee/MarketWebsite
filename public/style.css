@@ -648,6 +648,18 @@ form input {
     text-align: left;
 }
 
+.content p {
+    display:block;
+    width: 100%;
+    border: none;
+    background: rgb(199, 221, 236);
+    color: rgb(40, 89, 122);
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: bold;
+
+}
+
 .content button:hover {
     background-color: #ddd;
 }

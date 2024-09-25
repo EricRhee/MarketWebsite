@@ -84,8 +84,14 @@
                                     </span>
                                 </button>
                                 <div class="content" id="content">
-                                    <button type="submit" id="dropbar-signup" onclick="openPopup()">Sign in</button>
-                                    <button type="submit" id="dropbar-register" onclick="openReg()">Register</button>
+                                    <% if (typeof user !== 'undefined' && user) { %>
+                                        <p>Hi, <%= user.name %>!</p>
+                                        <button onclick="window.location.href='/user-settings'">User Settings</button>
+                                        <button onclick="logout()">Sign Out</button>
+                                    <% } else { %>
+                                        <button type="submit" id="dropbar-signup" onclick="openPopup()">Sign in</button>
+                                        <button type="submit" id="dropbar-register" onclick="openReg()">Register</button>
+                                    <% } %>
                                 </div>
                             </div>
                         </li>
@@ -121,6 +127,10 @@
                     content.style.display = 'none'; // Hide if clicked outside
                 }
             }
+
+            function logout() {
+                window.location.href = '/logout';
+            }
         </script>
         
         
@@ -151,26 +161,13 @@
                         <div class="border">
                             <h2> Trending!</h2>
                             <ul> 
-                                <li> 
-                                    <img src = "images/product-photo.webp" id="product-photo1" width = "200px" height = "200px">  
-                                    <p>Product name</p>
-                                    <p>5.99</p>
-                                </li>
-                                <li> 
-                                    <img src = "images/product-photo.webp" id="product-photo1" width = "200px" height = "200px">   
-                                    <p>Product name</p>
-                                    <p>5.99</p>
-                                </li>
-                                <li> 
-                                    <img src = "images/product-photo.webp" id="product-photo1" width = "200px" height = "200px">  
-                                    <p>Product name</p>
-                                    <p>5.99</p>
-                                </li>
-                                <li> 
-                                    <img src = "images/product-photo.webp" id="product-photo1" width = "200px" height = "200px">  
-                                    <p>Product name</p>
-                                    <p>5.99</p>
-                                </li>
+                                <% trendingProducts.slice(0, 4).forEach(product => { %>
+                                    <li> 
+                                        <img src="<%= product.imageUrl %>" alt="<%= product.name %>" id="product-photo1" width="200" height="200">
+                                        <p><%= product.name %></p>
+                                        <p>$<%= product.price %></p>
+                                    </li>
+                                <% }) %>
                             </ul>
                             <br>
                         </div>    
