@@ -60,6 +60,9 @@ app.get("/", async function(req, res) {
         const errorMessage = req.flash('error');
         const user = req.session.user;
 
+        const rowsToShow = parseInt(req.query.rowsToShow) || 4;
+        const productsPerRow = 7;
+
         // Render the index page and pass the data
         res.render('index', { 
             successMessage, 
@@ -68,7 +71,9 @@ app.get("/", async function(req, res) {
             trendingProducts, 
             discountProducts, 
             seasonalProducts, 
-            generalProducts 
+            generalProducts,
+            rowsToShow, 
+            productsPerRow 
         });
     } catch (error) {
         res.status(500).json({ error: "Error fetching products" });
@@ -150,6 +155,22 @@ app.post('/addProduct', async (req, res) => {
     await newProduct.save();
     res.send('Product added successfully');
 })
+
+app.get("/product/:id", async (req, res) => {
+    try {
+        const productId = req.params.id;
+        const product = await ProductModel.findById(productId);
+
+        if (!product) {
+            return res.status(404).send("Product not found");
+        }
+
+        res.render("product", { product });
+    } catch (error) {
+        res.status(500).send("Error retrieving product");
+    }
+});
+
 
 app.listen(3004, () => {
     console.log("Server is Running")

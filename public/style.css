@@ -663,3 +663,9 @@ form input {
 .content button:hover {
     background-color: #ddd;
 }
+
+#loadMoreBtn {
+    background: none;
+    border: none;
+}
+
