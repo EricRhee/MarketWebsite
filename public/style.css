@@ -669,3 +669,87 @@ form input {
     border: none;
 }
 
+
+.product-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the top */
+    padding: 50px;
+    height: 80vh;
+    /* Add this if you want a background for the whole product container */
+}
+
+.product-image {
+    flex: 0 1 600px; /* Fix the size of the image container */
+    text-align: center;
+}
+
+.product-image img {
+    width: 600px;
+    height: 600px;
+    object-fit: cover;
+    border: 1px solid black;
+    box-shadow: 0 2px 2px -2px white;
+}
+
+.product-details {
+    max-width: 600px; /* Limits the width to a reasonable size */
+    width: 600px;
+    height: 600px;
+    margin-left: 20px; /* Adds spacing between image and details */
+    background-color: white; /* Background color of product details */
+    padding: 20px; /* Padding inside the details for spacing */
+    border: 1px solid black;
+}
+
+.product-details h1 {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.product-details p {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.product-details .price {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.product-details .discount {
+    color: #f44336;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.product-details .buttons {
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.product-details button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    position: relative;
+    width: 47%;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-details button:hover {
+    background-color: #555;
+}
+
+.go-back:hover {
+    background-color: #777;
+}
+
+hr {
+    margin-bottom: 15px;
+}

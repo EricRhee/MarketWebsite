@@ -4,18 +4,284 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= product.name %> - Product Details</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+IS:wght@100..400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
-    <h1><%= product.name %></h1>
-    <p>Image URL: <%= product.imageUrl %></p> <!-- Debugging line -->
-    <img src="../<%= product.imageUrl %>" alt="<%= product.name %>" width="300" height="300">
-    <p>Description: <%= product.description %></p>
-    <p>Price: $<%= product.price %></p>
-    <% if (product.discount) { %>
-        <p>Discount: <%= product.discount %>% off</p>
+    <% if (success && success.length > 0) { %>
+        <div class="message" id="message">
+            <div class="success" id="success">
+                <span class="success-text"><%= success %></span>
+                <button type="button" id="success-close" onclick="closeSuccess()"> 
+                    <span class="material-symbols-outlined" id="close">
+                        close
+                    </span>
+                </button>
+            </div>
+        </div>
+        
+        <script>
+            console.log('Success alert displayed');
+    
+            function closeSuccess() {
+                document.getElementById('message').style.display = 'none';
+            }
+        </script>
     <% } %>
+    
+    <% if (error && error.length > 0) { %>
+        <div class="message-2" id="message-2">
+            <div class="error" id="success">
+                <span class="success-text"><%= error %></span>
+                <button type="button" id="error-close" onclick="closeSuccess()"> 
+                    <span class="material-symbols-outlined" id="close-2">
+                        close
+                    </span>
+                </button>
+            </div>
+        </div>
+        
+        <script>
+            console.log('Success alert displayed');
+    
+            function closeSuccess() {
+                document.getElementById('message-2').style.display = 'none';
+            }
+        </script>
+    <% } %>
+    <div class="main" id="main"></div>
+        <div class="top-message">
+            <h4> Opens 12/15/24</h4>
+        </div>
+        <div class="container">
+            <div class="navbar"> 
+                <div class="search">
+                    <ul>
+                        <li>
+                            <span class="material-symbols-outlined">
+                                menu
+                            </span>
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined">
+                                search
+                            </span>   
+                        </li>
+                    </ul>
+                </div>           
+                <div class="name">
+                    <h5> Hooney</h5>
+                </div>
+                <nav>        
+                    <ul>
+                        <li>
+                            <div class="dropdown">
+                                <button type="submit" id="sign-up/registration" style="border:none;background:white;" onclick="noUserDropMenu()">
+                                    <span class="material-symbols-outlined">
+                                        person
+                                    </span>
+                                </button>
+                                <div class="content" id="content">
+                                    <% if (typeof user !== 'undefined' && user) { %>
+                                        <p>Hi, <%= user.name %>!</p>
+                                        <button onclick="window.location.href='/user-settings'">User Settings</button>
+                                        <button onclick="logout()">Sign Out</button>
+                                    <% } else { %>
+                                        <button type="submit" id="dropbar-signup" onclick="openPopup()">Sign in</button>
+                                        <button type="submit" id="dropbar-register" onclick="openReg()">Register</button>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined">
+                                favorite
+                            </span>
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined md-48">
+                                shopping_cart
+                            </span>
+                        </li>   
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        
+        <script>
+            function noUserDropMenu() {
+                const content = document.getElementById('content');
+                if (content.style.display === 'grid') {
+                    content.style.display = 'none'; // Hide if it's already visible
+                } else {
+                    content.style.display = 'grid'; // Show dropdown
+                }
+            }
 
-    <a href="/">Go Back</a>
+            window.onclick = function(event) {
+                const dropdown = document.querySelector('.dropdown');
+                const content = document.getElementById('content');
+                if (!dropdown.contains(event.target)) {
+                    content.style.display = 'none'; // Hide if clicked outside
+                }
+            }
+
+            function logout() {
+                window.location.href = '/logout';
+            }
+        </script>
+
+        <div class="registration-popup" id="registration-popup">
+            <h6> Registration </h6>
+            <div class="logx">
+                <ul>
+                    <li>
+                    
+                    </li>
+                    <li>
+                        <button type="submit" id="close-registration" style="border:none;background:white;" onclick="closeReg()"> 
+                            <span class="material-symbols-outlined" id="close">
+                                close
+                            </span>
+                        </button>   
+                    </li>
+                </ul>
+            </div>
+            <form action="/createUser" method="POST" id="signup-form">
+                <input type="text" name="name" placeholder="Name" required> 
+                <input type="email" name="email" placeholder="Email" required> 
+                <input type="password" name="password" id="password" placeholder="Password" pattern="^(?=.*[A-Z])(?=.*[\W])[A-Za-z\d\W]{6,20}$" required>
+                <input type="hidden" name="redirectUrl" id="registerRedirectUrl">
+                <button type="submit" class="sign-up" >Sign Up</button>
+                <button type="button" class="dont-have-account" onclick="openPopup2()"> 
+                    <p id="bottom-text"> 
+                        Already have an account?&nbsp;
+                        <span> </span>
+                        <span style="color:blue;"> Sign In</span>
+                    </p> 
+                </button>
+            </form>
+            <script>
+                // Set the current URL in the hidden input field for the registration form
+                document.getElementById('registerRedirectUrl').value = window.location.pathname;
+            </script>
+        </div>
+
+        <div class="popup" id="popup">
+            <div class="top-container">
+                <h6> Log in </h6>
+                <div class="logx">
+                    <ul>
+                        <li>
+                        
+                        </li>
+                        <li>
+                            <button type="submit" id="close-registration" style="border:none;background:white;" onclick="closePopup()"> 
+                                <span class="material-symbols-outlined" id="close">
+                                    close
+                                </span>
+                            </button>   
+                        </li>
+                    </ul>
+                </div>
+                <form action="/login" method="POST" id="loginForm"> 
+                    <input type="text" placeholder="Email" name="email"> 
+                    <input type="password" placeholder="Password" name="password">
+                    <input type="hidden" name="redirectUrl" id="redirectUrl">
+                    <button type="submit" class="continue">Continue</button>
+                    <button type="button" class="dont-have-account" onclick="openReg()"> 
+                        <p id="bottom-text"> 
+                            Don't have an account?&nbsp;
+                            <span> </span>
+                            <span style="color:blue;"> Sign Up</span>
+                        </p> 
+                    </button>
+                </form>
+                <script>
+                    document.getElementById('redirectUrl').value = window.location.pathname;
+                </script>
+            </div>
+        </div>
+        <script>
+            const popup = document.getElementById("popup");
+            const main = document.getElementById("main");
+            const registration = document.getElementById("registration-popup");
+            const form = document.getElementById("signup-form");
+            const password = document.getElementById("password");
+    
+    
+            function openPopup() {
+                main.classList.add("dim"); 
+                popup.classList.add("open-popup");
+                
+    
+                document.body.classList.add("stop-scrolling")
+    
+            }
+    
+            function openPopup2() {
+                registration.classList.remove("close-reg");
+                popup.classList.add("open-popup");
+            }
+    
+            function closePopup() {
+                popup.classList.remove("open-popup");
+                main.classList.remove("dim");
+                document.body.classList.remove("stop-scrolling"); 
+    
+            }
+    
+            function openReg() {
+                main.classList.add("dim"); 
+                popup.classList.remove("open-popup");
+                document.body.classList.add("stop-scrolling")
+                registration.classList.add("close-reg");
+            }   
+    
+            function closeReg() {
+                registration.classList.remove("close-reg");
+                main.classList.remove("dim");
+                document.body.classList.remove("stop-scrolling"); 
+            }
+        </script>
+
+        
+        
+        <div class="three-picks">
+            <nav id="picks">
+                <ul>
+                    <li id ="back"> Free Standard Shipping with any US$49 purchase</li>
+                    <li id ="back"> Download app for more deals </li>
+                    <li id ="back"> Gifts and Premium</li>
+                </ul>
+            </nav>
+        </div>
+        <div class="product-container">
+            <div class="product-image">
+                <img src="../<%= product.imageUrl %>" alt="<%= product.name %>">
+            </div>
+            <div class="product-details">
+                <h1><%= product.name %></h1>
+                <p class="price">US$<%= product.price %></p>
+                <% if (product.discount) { %>
+                    <p class="discount">Discount: <%= product.discount %>% off</p>
+                <% } %>
+                <p>Description: <%= product.description %></p>
+                <div class="buttons">
+                    <button onclick="addToCart('<%= product._id %>')">Add to Cart</button>
+                    <button onclick="saveProduct('<%= product._id %>')">Save</button>
+                </div>
+                <hr>
+                <p>Free Standard Shipping with any US$29 purchase (10 - 14 business days)</p>
+                <hr>
+                <p><b>Security & Privacy</b><br>Safe payments: We do not share your personal details with any third parties without your consent. <br>
+                    Secure personal details: We protect your privacy and keep your personal details safe and secure.</p>
+                <hr>
+                <p>Free Returns within 90 days</p>
+            </div>
+        </div>
+
 </body>
 </html>

@@ -42,6 +42,7 @@ db.once('open', ()=> {
 app.use((req, res, next) => {
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
+    req.session.returnTo = req.originalUrl;
     next();
 });
 
@@ -80,6 +81,22 @@ app.get("/", async function(req, res) {
     }
 });
 
+app.get("/product", function(req, res) {
+    try {
+        const successMessage = req.flash('success');
+        const errorMessage = req.flash('error');
+        const user = req.session.user;
+
+        res.render('product', {
+            successMessage, 
+            errorMessage, 
+            user
+        })
+    } catch (error) {
+        res.status(500).json({ error: "Error fetching products" });
+    }
+});
+
 app.get("/user-settings", function(req, res) {
     res.render('account-settings')
 });
@@ -97,7 +114,8 @@ app.post("/createUser", async (req, res) => {
     const user = req.body;
     const newUser = new UserModel(user);
     await newUser.save();
-    res.redirect("/")
+    const redirectUrl = req.body.redirectUrl || "/";
+    res.redirect(redirectUrl)
     //res.status(204).send();
     //res.send("hello");
 })
@@ -107,18 +125,20 @@ app.post("/login", async function(req, res) {
         const user = await UserModel.findOne({ email: req.body.email });
         if (user) {
             const result = req.body.password == user.password;
+            delete req.session.returnTo;
             if (result) {
                 req.session.user = user;
                 req.flash('success', 'Login Successful')
-                res.redirect("/")
+                const redirectUrl = req.body.redirectUrl || "/";
+                res.redirect(redirectUrl)
                 
             } else  {
                 req.flash('error', 'email or password does not match')
-                res.redirect("/")
+                res.redirect(req.body.redirectUrl || "/")
             }
         } else {
             req.flash('error', 'email or password does not match')
-            res.redirect("/")
+            res.redirect(req.body.redirectUrl || "/")
         }
     } catch(error) {
         res.status(400).json({ error });
@@ -161,11 +181,15 @@ app.get("/product/:id", async (req, res) => {
         const productId = req.params.id;
         const product = await ProductModel.findById(productId);
 
+        const successMessage = req.flash('success');
+        const errorMessage = req.flash('error');
+        const user = req.session.user;
+
         if (!product) {
             return res.status(404).send("Product not found");
         }
 
-        res.render("product", { product });
+        res.render("product", { product, successMessage, errorMessage, user });
     } catch (error) {
         res.status(500).send("Error retrieving product");
     }

@@ -182,14 +182,16 @@
                             <ul> 
                                 <% discountProducts.slice(0, 2).forEach(product => { %>
                                 <li> 
-                                    <div class="img-container">
-                                        <img src="<%= product.imageUrl %>" alt="<%= product.name %>" id="product-photo1" width="200" height="200">
-                                        <div class="percent">
-                                            <h3><%= product.discount %>% OFF</h3>
+                                    <a href="/product/<%= product._id %>"> 
+                                        <div class="img-container">
+                                            <img src="<%= product.imageUrl %>" alt="<%= product.name %>" id="product-photo1" width="200" height="200">
+                                            <div class="percent">
+                                                <h3><%= product.discount %>% OFF</h3>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <p><%= product.name %></p>
-                                    <p>$<%= product.price %></p>
+                                        <p><%= product.name %></p>
+                                        <p>$<%= product.price %></p>
+                                    </a>
                                 </li>
                                 <% }) %>
                             </ul>
@@ -201,14 +203,16 @@
         </div> 
         <div class="summer"> 
             <div class="border-3">
-                <h2 id="summer-h"> Summer is Here! </h2>
+                <h2 id="summer-h"> Fall is Here! </h2>
                 <p id="summer-p"> lets try out a new style</p>
                 <ul> 
                     <% seasonalProducts.slice(0, 6).forEach(product => { %>
                     <li> 
-                        <img src="<%= product.imageUrl %>" alt="<%= product.name %>" id="product-photo1" width="200" height="200">
-                        <p><%= product.name %></p>
-                        <p>$<%= product.price %></p>
+                        <a href="/product/<%= product._id %>">
+                            <img src="<%= product.imageUrl %>" alt="<%= product.name %>" id="product-photo1" width="200" height="200">
+                            <p><%= product.name %></p>
+                            <p>$<%= product.price %></p>
+                        </a>
                     </li>
                     <% }) %>
                     <li>
@@ -316,6 +320,7 @@
             <input type="text" name="name" placeholder="Name" required> 
             <input type="email" name="email" placeholder="Email" required> 
             <input type="password" name="password" id="password" placeholder="Password" pattern="^(?=.*[A-Z])(?=.*[\W])[A-Za-z\d\W]{6,20}$" required>
+            <input type="hidden" name="redirectUrl" id="registerRedirectUrl">
             <button type="submit" class="sign-up" >Sign Up</button>
             <button type="button" class="dont-have-account" onclick="openPopup2()"> 
                 <p id="bottom-text"> 
@@ -325,6 +330,10 @@
                 </p> 
             </button>
         </form>
+        <script>
+            // Set the current URL in the hidden input field for the registration form
+            document.getElementById('registerRedirectUrl').value = window.location.pathname;
+        </script>
     </div>
     
     <div class="popup" id="popup">
@@ -347,6 +356,7 @@
             <form action="/login" method="POST" id="loginForm"> 
                 <input type="text" placeholder="Email" name="email"> 
                 <input type="password" placeholder="Password" name="password">
+                <input type="hidden" name="redirectUrl" id="redirectUrl">
                 <button type="submit" class="continue">Continue</button>
                 <button type="button" class="dont-have-account" onclick="openReg()"> 
                     <p id="bottom-text"> 
@@ -356,6 +366,9 @@
                     </p> 
                 </button>
             </form>
+            <script>
+                document.getElementById('redirectUrl').value = window.location.pathname;
+            </script>
         </div>
     </div>
     
