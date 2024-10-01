@@ -252,6 +252,92 @@ app.post('/removeSaved/:productId', async (req, res) => {
     }
 });
 
+app.post('/removeCart/:id', async (req, res) => {
+    try {
+        if (!req.session.user) {
+            req.flash('error', 'You need to be logged in to remove items from the cart');
+            return res.redirect('/cart');
+        }
+
+        const userId = req.session.user._id;
+        const productId = req.params.id;
+
+       
+        await UserModel.findByIdAndUpdate(userId, {
+            $pull: { cartItems: productId }
+        });
+
+        req.flash('success', 'Item removed from cart');
+        res.redirect('/cart');
+    } catch (error) {
+        req.flash('error', 'Error removing item from cart');
+        res.redirect('/cart');
+    }
+});
+
+app.get('/cart', async (req, res) => {
+    try {
+        if (!req.session.user) {
+            req.flash('error', 'You need to log in to view your cart');
+            const redirectUrl = req.query.redirectUrl || "/";
+            return res.redirect(redirectUrl);
+        }
+
+        const user = await UserModel.findById(req.session.user._id).populate('cartItems');
+        res.render('cart', { cartItems: user.cartItems });
+    } catch (error) {
+        req.flash('error', 'Error fetching saved items.');
+        res.redirect('/');
+    }
+});
+
+app.post('/cart-product', async (req, res) => {
+    try {
+        if (!req.session.user) {
+            return res.status(401).json({ success: false, message: 'You need to log in to add to cart.' });
+        }
+
+        const userId = req.session.user._id;
+        const productId = req.body.productId;
+
+        
+        const user = await UserModel.findById(userId);
+
+        if (!user.cartItems.includes(productId)) {
+            user.cartItems.push(productId);  
+            await user.save();  
+        }
+
+        res.json({ success: true, message: 'Product saved successfully!' });
+    } catch (error) {
+        console.error('Error saving product:', error);
+        res.status(500).json({ success: false, message: 'Error saving product.' });
+    }
+});
+
+app.post('/moveToCart/:id', async (req, res) => {
+    try {
+        if (!req.session.user) {
+            req.flash('error', 'You need to be logged in to move items to the cart');
+            return res.redirect('/');
+        }
+
+        const userId = req.session.user._id;
+        const productId = req.params.id;
+
+        await UserModel.findByIdAndUpdate(userId, {
+            $pull: { savedItems: productId },
+            $addToSet: { cartItems: productId }
+        });
+
+        req.flash('success', 'Item moved to cart');
+        res.redirect('/saves');
+    } catch (error) {
+        req.flash('error', 'Error moving item to cart');
+        res.redirect('/saves');
+    }
+});
+
 app.listen(3004, () => {
     console.log("Server is Running")
 })

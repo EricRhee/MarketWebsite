@@ -18,7 +18,14 @@ const UserSchema = new mongoose.Schema ({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'product' // Reference the Product model
         }
+    ],
+    cartItems: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'product' // Reference the Product model
+        }
     ]
+
 })
 
 const userModel = mongoose.model("users", UserSchema)

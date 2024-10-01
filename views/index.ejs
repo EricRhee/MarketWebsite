@@ -107,9 +107,15 @@
                             </script>
                         </li>
                         <li>
-                            <span class="material-symbols-outlined md-48">
-                                shopping_cart
-                            </span>
+                            <button onclick="window.location.href='/cart'" style="border:none;background:white;">
+                                <input type="hidden" name="redirectUrl" id="cartRedirectUrl">
+                                <span class="material-symbols-outlined md-48">
+                                    shopping_cart
+                                </span>
+                            </button>
+                            <script>
+                                document.getElementById('cartRedirectUrl').value = window.location.pathname;
+                            </script>
                         </li>   
                     </ul>
                 </nav>
