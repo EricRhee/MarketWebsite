@@ -48,10 +48,10 @@ app.use((req, res, next) => {
 
 app.get("/", async function(req, res) {
     try {
-        // Fetch all products from the database
+        
         const allProducts = await ProductModel.find();
 
-        // Split products into different categories
+        
         const trendingProducts = allProducts.filter(product => product.trending);
         const discountProducts = allProducts.filter(product => product.discounted);
         const seasonalProducts = allProducts.filter(product => product.seasonal);
@@ -64,7 +64,7 @@ app.get("/", async function(req, res) {
         const rowsToShow = parseInt(req.query.rowsToShow) || 4;
         const productsPerRow = 7;
 
-        // Render the index page and pass the data
+        
         res.render('index', { 
             successMessage, 
             errorMessage, 
@@ -195,6 +195,62 @@ app.get("/product/:id", async (req, res) => {
     }
 });
 
+app.get('/saves', async (req, res) => {
+    try {
+        if (!req.session.user) {
+            req.flash('error', 'You need to log in to view your saved items');
+            const redirectUrl = req.query.redirectUrl || "/";
+            return res.redirect(redirectUrl);
+        }
+
+        const user = await UserModel.findById(req.session.user._id).populate('savedItems');
+        res.render('saves', { savedItems: user.savedItems });
+    } catch (error) {
+        req.flash('error', 'Error fetching saved items.');
+        res.redirect('/');
+    }
+});
+
+app.post('/save-product', async (req, res) => {
+    try {
+        if (!req.session.user) {
+            return res.status(401).json({ success: false, message: 'You need to log in to save items.' });
+        }
+
+        const userId = req.session.user._id;
+        const productId = req.body.productId;
+
+        
+        const user = await UserModel.findById(userId);
+
+        if (!user.savedItems.includes(productId)) {
+            user.savedItems.push(productId);  
+            await user.save();  
+        }
+
+        res.json({ success: true, message: 'Product saved successfully!' });
+    } catch (error) {
+        console.error('Error saving product:', error);
+        res.status(500).json({ success: false, message: 'Error saving product.' });
+    }
+});
+
+app.post('/removeSaved/:productId', async (req, res) => {
+    try {
+        const productId = req.params.productId;
+        const userId = req.session.user._id;
+
+        await UserModel.findByIdAndUpdate(userId, {
+            $pull: { savedItems: productId }
+        });
+
+        req.flash('success', 'Item removed from saved items.');
+        res.redirect('/saves'); 
+    } catch (error) {
+        req.flash('error', 'Error removing item.');
+        res.redirect('/saves'); 
+    }
+});
 
 app.listen(3004, () => {
     console.log("Server is Running")

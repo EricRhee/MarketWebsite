@@ -506,7 +506,7 @@ form input {
     width: 400px;
     height: 50px;
     position:absolute;
-    top: 190px;
+    top: 200px;
     left: 50%;
     border: none;
     background: rgb(245, 70, 140);
@@ -558,10 +558,10 @@ form input {
 
 .success {
     display: flex;
-    justify-content: center; /* Center the text in the container */
-    align-items: center; /* Vertical centering for text and button */
-    width: 100%; /* Full width of the message */
-    position: relative; /* For positioning the button */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
     z-index: 3;
     text-align: center;
     border-radius: 5px;
@@ -571,10 +571,10 @@ form input {
 
 .error {
     display: flex;
-    justify-content: center; /* Center the text in the container */
-    align-items: center; /* Vertical centering for text and button */
-    width: 100%; /* Full width of the message */
-    position: relative; /* For positioning the button */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
     z-index: 3;
     text-align: center;
     border-radius: 5px;
@@ -584,31 +584,31 @@ form input {
 
 
 .success-text {
-    flex-grow: 1; /* Take up available space, so text stays centered */
-    text-align: center; /* Center text within the available space */
+    flex-grow: 1;
+    text-align: center;
 }
 
 #success-close {
     border: none;
-    background: transparent; /* Remove button background */
+    background: transparent;
     display: flex;
     height: 5px;
-    align-items: center; /* Vertically center the button */
-    justify-content: center; /* Center icon inside button */
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     vertical-align: middle;
     position: absolute;
     bottom: 25px;
-    right: 10px; /* Align button to the right of the container */
+    right: 10px;
 }
 
 #error-close {
     border: none;
-    background: transparent; /* Remove button background */
+    background: transparent; 
     display: flex;
     height: 5px;
-    align-items: center; /* Vertically center the button */
-    justify-content: center; /* Center icon inside button */
+    align-items: center; 
+    justify-content: center;
     cursor: pointer;
     vertical-align: middle;
     position: absolute;
@@ -616,12 +616,12 @@ form input {
 }
 
 #close {
-    font-size: 24px; /* Icon size */
-    color: rgb(2, 111, 2); /* Icon color */
+    font-size: 24px;
+    color: rgb(2, 111, 2); 
 }
 #close-2 {
-    font-size: 24px; /* Icon size */
-    color: rgb(63, 0, 0); /* Icon color */
+    font-size: 24px; 
+    color: rgb(63, 0, 0);
 }
 
 .dropdown {
@@ -673,14 +673,14 @@ form input {
 .product-container {
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align items to the top */
+    align-items: flex-start;
     padding: 50px;
     height: 80vh;
-    /* Add this if you want a background for the whole product container */
+   
 }
 
 .product-image {
-    flex: 0 1 600px; /* Fix the size of the image container */
+    flex: 0 1 600px;
     text-align: center;
 }
 
@@ -693,12 +693,12 @@ form input {
 }
 
 .product-details {
-    max-width: 600px; /* Limits the width to a reasonable size */
+    max-width: 600px;
     width: 600px;
     height: 600px;
-    margin-left: 20px; /* Adds spacing between image and details */
-    background-color: white; /* Background color of product details */
-    padding: 20px; /* Padding inside the details for spacing */
+    margin-left: 20px;
+    background-color: white; 
+    padding: 20px; 
     border: 1px solid black;
 }
 
@@ -752,4 +752,74 @@ form input {
 
 hr {
     margin-bottom: 15px;
+}
+
+#password-text {
+    color: red;
+    font-size: .5rem;
+    margin-top: -10px;
+    padding-left: 20px;
+    padding-right: 100px;
+}
+
+.saved-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: 20px;
+}
+
+.product {
+    display: flex; 
+    justify-content: left; 
+    width: 100%;
+    max-width: 800px; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px; 
+    background-color: #fff;
+    border-radius: 5px; 
+}
+
+.product img {
+    width: 150px; 
+    height: auto; 
+    border: .1rem solid black
+    
+}
+
+.product h2, .product p {
+    margin-top: -20px; 
+    padding-bottom: 23px;
+    padding-left: 10px;
+}
+
+#saves-buttons {
+    gap: 10px; 
+    margin: 5px;
+    position:absolute;
+    left: 65%;
+    padding-top: 25px;
+}
+
+.buttons form button {
+    padding: 10px 15px; 
+    background-color: black; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    margin-bottom: 10px;
+    
+}
+
+.buttons form button:hover {
+    background-color: #0056b3; 
+}
+
+#saved-h1 {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

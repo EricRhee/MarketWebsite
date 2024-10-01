@@ -72,7 +72,7 @@
                     </ul>
                 </div>           
                 <div class="name">
-                    <h5> Hooney</h5>
+                    <a href="/"><h5> Hooney</h5></a>
                 </div>
                 <nav>        
                     <ul>
@@ -96,9 +96,15 @@
                             </div>
                         </li>
                         <li>
-                            <span class="material-symbols-outlined">
-                                favorite
-                            </span>
+                            <button onclick="window.location.href='/saves'" style="border:none;background:white;"  id="button-saves">
+                                <input type="hidden" name="redirectUrl" id="favoriteRedirectUrl">
+                                <span class="material-symbols-outlined" id="saves">
+                                    favorite
+                                </span>
+                            </button>
+                            <script>
+                                document.getElementById('favoriteRedirectUrl').value = window.location.pathname;
+                            </script>
                         </li>
                         <li>
                             <span class="material-symbols-outlined md-48">
@@ -320,6 +326,7 @@
             <input type="text" name="name" placeholder="Name" required> 
             <input type="email" name="email" placeholder="Email" required> 
             <input type="password" name="password" id="password" placeholder="Password" pattern="^(?=.*[A-Z])(?=.*[\W])[A-Za-z\d\W]{6,20}$" required>
+            <p id="password-text">Password must be 6-20 characters long, include at least one uppercase letter and one special character.</p>
             <input type="hidden" name="redirectUrl" id="registerRedirectUrl">
             <button type="submit" class="sign-up" >Sign Up</button>
             <button type="button" class="dont-have-account" onclick="openPopup2()"> 
